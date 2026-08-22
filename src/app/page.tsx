@@ -41,7 +41,7 @@ export default function Home() {
         </section>
 
         {/* Mission Graphic Banner */}
-        <section className="bg-[#1b4332] text-white rounded-3xl p-8 space-y-4">
+        <section id="about" className="bg-[#1b4332] text-white rounded-3xl p-8 space-y-4">
           <span className="text-xs tracking-widest text-emerald-300 uppercase font-semibold">Our mission</span>
           <h2 className="text-2xl sm:text-3xl font-bold">Greener rooftops. Cooler futures.</h2>
           <p className="text-emerald-100">
@@ -50,7 +50,7 @@ export default function Home() {
         </section>
 
         {/* Feature Cards */}
-        <section className="space-y-4">
+        <section id="why-green-roofs" className="space-y-4">
           <span className="text-xs tracking-widest text-emerald-800 uppercase font-semibold">Why Elios</span>
           <h2 className="text-3xl font-bold">Green infrastructure with a clear purpose.</h2>
 
@@ -79,7 +79,7 @@ export default function Home() {
         </section>
 
         {/* Four Step Approach */}
-        <section className="bg-[#1b4332] text-white p-8 rounded-3xl space-y-6">
+        <section id="solutions" className="bg-[#1b4332] text-white p-8 rounded-3xl space-y-6">
           <span className="text-xs tracking-widest text-emerald-300 uppercase font-semibold">The Elios Approach</span>
           <h2 className="text-3xl font-bold leading-snug">From empty roof to living layer.</h2>
           <div className="grid grid-cols-2 gap-4 pt-2">
