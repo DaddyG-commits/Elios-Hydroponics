@@ -22,19 +22,35 @@ export const authOptions: NextAuthOptions = {
           where: { email: credentials.email },
         })
 
-        if (!user) return null
+        // Cast user to safely access schema fields
+        const dbUser = user as (typeof user & { password?: string; role?: string }) | null
 
-        const isValid = await bcrypt.compare(credentials.password, user.password)
+        if (!dbUser || !dbUser.password) return null
+
+        const isValid = await bcrypt.compare(credentials.password, dbUser.password)
         if (!isValid) return null
 
-        return { id: user.id, email: user.email, name: user.name, role: user.role }
+        return {
+          id: dbUser.id,
+          email: dbUser.email,
+          name: dbUser.name,
+          role: dbUser.role || 'USER',
+        } as any
       },
     }),
   ],
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id
+        token.role = (user as any).role
+      }
+      return token
+    },
     async session({ session, token }) {
-      if (token && session.user) {
-        session.user.id = token.sub as string
+      if (session.user) {
+        ;(session.user as any).id = token.id || token.sub
+        ;(session.user as any).role = token.role
       }
       return session
     },
