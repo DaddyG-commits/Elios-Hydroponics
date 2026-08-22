@@ -8,13 +8,15 @@ export default function Footer() {
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div className="space-y-3">
-            <Image 
-              src="/logo.png" 
-              alt="Elios Hydroponics" 
-              width={140} 
-              height={40} 
-              className="h-10 w-auto object-contain brightness-0 invert" 
-            />
+            <div className="inline-flex bg-[#f2f5f0] rounded-xl px-3 py-2">
+              <Image
+                src="/logo.png"
+                alt="Elios Hydroponics"
+                width={1920}
+                height={200}
+                className="h-10 w-auto max-w-[220px] object-contain object-left"
+              />
+            </div>
             <p className="text-sm text-emerald-200">Greener rooftops. Cooler futures.</p>
           </div>
 
