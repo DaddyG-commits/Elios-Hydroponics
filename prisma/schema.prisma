@@ -9,19 +9,28 @@ generator client {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  name      String?
-  email     String    @unique
-  password  String
-  role      String    @default("USER")
-  messages  ChatMessage[]
-  createdAt DateTime  @default(now())
+  id           String        @id @default(cuid())
+  name         String?
+  email        String        @unique
+  password     String
+  phone        String?
+  phoneCountry String?       @default("CA")
+  address      String?
+  city         String?
+  region       String?
+  postalCode   String?
+  country      String?       @default("CA")
+  role         String        @default("USER")
+  resetToken   String?
+  resetExpires DateTime?
+  messages     ChatMessage[]
+  createdAt    DateTime      @default(now())
 }
 
 model ChatMessage {
   id        String   @id @default(cuid())
   content   String
-  sender    String   // "USER" or "ADMIN"
+  sender    String
   userId    String?
   user      User?    @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
