@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { MessageSquare } from 'lucide-react'
 
 export default function Footer() {
@@ -7,13 +8,13 @@ export default function Footer() {
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl text-red-500">🍁</span>
-              <div>
-                <span className="font-bold text-lg tracking-wider block leading-tight">ELIOS</span>
-                <span className="text-xs text-emerald-300 tracking-widest block">HYDROPONICS</span>
-              </div>
-            </div>
+            <Image 
+              src="/logo.png" 
+              alt="Elios Hydroponics" 
+              width={140} 
+              height={40} 
+              className="h-10 w-auto object-contain brightness-0 invert" 
+            />
             <p className="text-sm text-emerald-200">Greener rooftops. Cooler futures.</p>
           </div>
 
