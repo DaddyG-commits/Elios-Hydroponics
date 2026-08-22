@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X, MessageSquare, LogIn } from 'lucide-react'
 
 export default function Navbar() {
@@ -9,13 +10,16 @@ export default function Navbar() {
 
   return (
     <nav className="bg-[#f2f5f0] border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl text-red-600">🍁</span>
-          <div>
-            <span className="font-bold text-xl tracking-wider text-gray-900 block leading-tight">ELIOS</span>
-            <span className="text-xs text-gray-500 tracking-widest block">HYDROPONICS</span>
-          </div>
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <Link href="/" className="flex items-center">
+          <Image 
+            src="/logo.png" 
+            alt="Elios Hydroponics" 
+            width={140} 
+            height={40} 
+            className="h-10 w-auto object-contain"
+            priority 
+          />
         </Link>
 
         <button 
