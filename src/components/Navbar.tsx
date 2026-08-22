@@ -11,17 +11,17 @@ export default function Navbar() {
   return (
     <nav className="bg-[#f2f5f0] border-b border-gray-200 sticky top-0 z-50">
       <div className="w-full">
-        <div className="max-w-6xl mx-auto px-3 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between gap-3">
+        <div className="max-w-6xl mx-auto px-3 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center min-w-0 flex-1">
             <Image
               src="/logo.png"
               alt="Elios Hydroponics"
-              width={1920}
-              height={200}
-              sizes="(max-width: 640px) 72vw, (max-width: 1024px) 420px, 520px"
-              className="h-12 sm:h-14 md:h-16 w-auto max-w-[min(100%,520px)] object-contain object-left"
+              width={1200}
+              height={320}
+              sizes="(max-width: 640px) 78vw, (max-width: 1024px) 480px, 560px"
+              className="h-16 sm:h-[4.5rem] md:h-20 w-auto max-w-[min(100%,560px)] object-contain object-left"
               priority
-              quality={90}
+              quality={95}
             />
           </Link>
 
@@ -45,7 +45,7 @@ export default function Navbar() {
             aria-label="Toggle Menu"
             aria-expanded={isOpen}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </button>
         </div>
       </div>
