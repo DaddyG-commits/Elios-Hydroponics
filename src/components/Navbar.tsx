@@ -22,20 +22,36 @@ export default function Navbar() {
           />
         </Link>
 
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-800">
+          <Link href="/#solutions" className="hover:text-emerald-800 transition">Solutions</Link>
+          <Link href="/#why-green-roofs" className="hover:text-emerald-800 transition">Why green roofs</Link>
+          <Link href="/chat" className="flex items-center gap-1.5 hover:text-emerald-800 transition">
+            <MessageSquare className="w-4 h-4" /> Admin Chat
+          </Link>
+          <Link 
+            href="/login" 
+            className="bg-[#1b4332] text-white px-5 py-2 rounded-lg flex items-center gap-2 font-semibold hover:bg-emerald-900 transition"
+          >
+            <LogIn className="w-4 h-4" /> Sign in
+          </Link>
+        </div>
+
+        {/* Mobile menu button */}
         <button 
           onClick={() => setIsOpen(!isOpen)} 
-          className="text-gray-800 focus:outline-none"
+          className="md:hidden text-gray-800 focus:outline-none p-1"
           aria-label="Toggle Menu"
         >
           {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
         </button>
       </div>
 
+      {/* Mobile menu */}
       {isOpen && (
-        <div className="bg-[#f2f5f0] px-6 py-6 border-b border-gray-200 flex flex-col gap-5 text-gray-800 font-medium">
-          <Link href="#solutions" onClick={() => setIsOpen(false)} className="hover:text-emerald-800">Solutions</Link>
-          <Link href="#why-green-roofs" onClick={() => setIsOpen(false)} className="hover:text-emerald-800">Why green roofs</Link>
-          <Link href="#about" onClick={() => setIsOpen(false)} className="hover:text-emerald-800">About</Link>
+        <div className="md:hidden bg-[#f2f5f0] px-6 py-6 border-b border-gray-200 flex flex-col gap-5 text-gray-800 font-medium">
+          <Link href="/#solutions" onClick={() => setIsOpen(false)} className="hover:text-emerald-800">Solutions</Link>
+          <Link href="/#why-green-roofs" onClick={() => setIsOpen(false)} className="hover:text-emerald-800">Why green roofs</Link>
           <Link href="/chat" onClick={() => setIsOpen(false)} className="flex items-center gap-2 hover:text-emerald-800">
             <MessageSquare className="w-4 h-4" /> Admin Chat
           </Link>
