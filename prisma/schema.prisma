@@ -1,0 +1,28 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String    @id @default(cuid())
+  name      String?
+  email     String    @unique
+  password  String
+  role      String    @default("USER")
+  messages  ChatMessage[]
+  createdAt DateTime  @default(now())
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  content   String
+  sender    String   // "USER" or "ADMIN"
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
