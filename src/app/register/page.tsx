@@ -54,7 +54,14 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-[#f2f5f0] text-gray-900 flex flex-col">
       <Navbar />
 
-      <main className="flex-1 max-w-lg mx-auto px-5 py-10 w-full">
+      <main className="flex-1 max-w-lg mx-auto px-5 pt-28 pb-12 w-full">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-900 hover:text-emerald-700 mb-5"
+        >
+          <span aria-hidden>←</span> Back to home
+        </Link>
+
         <div className="bg-white border border-gray-200 p-7 rounded-2xl space-y-5 shadow-sm">
           <div className="space-y-1 text-center">
             <h1 className="text-2xl font-bold">Create an account</h1>

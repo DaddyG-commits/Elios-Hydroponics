@@ -34,7 +34,14 @@ export default function LoginPage() {
     <div className="min-h-screen bg-[#f2f5f0] text-gray-900 flex flex-col">
       <Navbar />
 
-      <main className="flex-1 max-w-md mx-auto px-5 py-12 w-full flex flex-col justify-center">
+      <main className="flex-1 max-w-md mx-auto px-5 pt-28 pb-12 w-full">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-900 hover:text-emerald-700 mb-5"
+        >
+          <span aria-hidden>←</span> Back to home
+        </Link>
+
         <div className="bg-white border border-gray-200 p-8 rounded-2xl space-y-6 shadow-sm">
           <div className="space-y-1 text-center">
             <h1 className="text-2xl font-bold">Sign in to Elios</h1>
