@@ -1,9 +1,8 @@
 datasource db {
   provider = "postgresql"
-  // Use Neon pooler URL for serverless (…-pooler…neon.tech)
+  // Neon: use the pooled connection string in Vercel as DATABASE_URL
+  // Example: postgresql://user:pass@ep-xxx-pooler.region.aws.neon.tech/neondb?sslmode=require
   url      = env("DATABASE_URL")
-  // Optional: set DIRECT_URL to the non-pooler connection for migrations
-  directUrl = env("DIRECT_URL")
 }
 
 generator client {
