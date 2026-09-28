@@ -44,7 +44,6 @@ button {
   margin: 0 auto;
 }
 
-/* Progress bar */
 .eh-scroll-progress {
   position: fixed;
   top: 0;
@@ -58,7 +57,6 @@ button {
   pointer-events: none;
 }
 
-/* Fluid cards start neutral — JS drives opacity/transform */
 [data-fluid] {
   transition: none;
 }
@@ -67,7 +65,7 @@ button {
   will-change: transform;
 }
 
-/* —— Nav (CryptoByt pill) —— */
+/* —— Nav —— */
 .eh-header {
   position: fixed;
   inset: 0 0 auto;
@@ -112,7 +110,6 @@ button {
   font-size: 14px;
 }
 
-/* Always show full name — matches CryptoByt */
 .eh-brand-name {
   white-space: nowrap;
   overflow: hidden;
@@ -204,7 +201,7 @@ button {
   display: flex;
 }
 
-/* —— Hero —— */
+/* —— Hero with city photo (CryptoByt-style underlay) —— */
 .eh-hero {
   min-height: 100vh;
   position: relative;
@@ -214,34 +211,49 @@ button {
   padding: 120px 0 100px;
 }
 
+.eh-hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.eh-hero-img {
+  object-fit: cover;
+  object-position: center 35%;
+  transform: scale(1.05);
+  filter: brightness(0.55) contrast(1.08) saturate(0.85);
+}
+
+/* Dark gradient like CryptoByt so text stays readable over the city */
 .eh-hero-bg {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
-    linear-gradient(180deg, rgba(5, 6, 5, 0.55) 0%, rgba(5, 6, 5, 0.88) 70%, #050605 100%),
-    linear-gradient(90deg, #050605 0%, rgba(5, 6, 5, 0.7) 45%, transparent 80%),
-    radial-gradient(ellipse at 70% 40%, rgba(27, 67, 50, 0.55), transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(199, 255, 69, 0.06), transparent 40%);
+    linear-gradient(90deg, rgba(5, 6, 5, 0.92) 0%, rgba(5, 6, 5, 0.72) 42%, rgba(5, 6, 5, 0.35) 78%, rgba(5, 6, 5, 0.55) 100%),
+    linear-gradient(180deg, rgba(5, 6, 5, 0.45) 0%, transparent 35%, rgba(5, 6, 5, 0.75) 78%, #050605 100%);
   pointer-events: none;
 }
 
 .eh-hero-grid {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
   background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
+  mask-image: linear-gradient(to right, black, transparent 80%);
   pointer-events: none;
 }
 
 .eh-hero-glow {
   position: absolute;
+  z-index: 1;
   width: 380px;
   height: 380px;
   border-radius: 50%;
-  background: rgba(199, 255, 69, 0.1);
+  background: rgba(199, 255, 69, 0.09);
   filter: blur(100px);
   right: 8%;
   top: 30%;
@@ -288,7 +300,7 @@ button {
 }
 
 .eh-hero-text {
-  color: #b4bab2;
+  color: #c0c6be;
   max-width: 520px;
   font-size: 16px;
   line-height: 1.7;
@@ -321,7 +333,7 @@ button {
 }
 
 .eh-hero-proof span {
-  color: #7a8278;
+  color: #8a9288;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -383,7 +395,6 @@ button {
   font-style: normal;
 }
 
-/* Glow cards — CryptoByt style */
 .eh-fluid-stack {
   display: flex;
   flex-direction: column;
@@ -467,7 +478,6 @@ button {
   z-index: 1;
 }
 
-/* Sections */
 .eh-section {
   padding: 80px 0;
 }
@@ -540,7 +550,6 @@ button {
   font-size: 13px;
 }
 
-/* Process */
 .eh-process {
   background: #0c0e0c;
   border-top: 1px solid var(--line);
@@ -587,7 +596,6 @@ button {
   line-height: 1.5;
 }
 
-/* Stats */
 .eh-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -620,7 +628,6 @@ button {
   font-size: 10px;
 }
 
-/* Sticky story */
 .eh-story {
   position: relative;
   background: #050605;
@@ -710,7 +717,6 @@ button {
   max-width: 500px;
 }
 
-/* CTA */
 .eh-cta {
   position: relative;
   overflow: hidden;
@@ -739,7 +745,6 @@ button {
   color: white;
 }
 
-/* Footer */
 .eh-footer {
   background: #050605;
   padding: 52px 0 24px;

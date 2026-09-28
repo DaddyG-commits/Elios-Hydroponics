@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ScrollFluid from '@/components/ScrollFluid'
@@ -10,8 +11,18 @@ export default function Home() {
       <Navbar />
 
       <main style={{ flex: 1 }}>
-        {/* Hero — CryptoByt layout */}
+        {/* Hero — photo city underlay like CryptoByt */}
         <section className="eh-hero">
+          <div className="eh-hero-photo" aria-hidden>
+            <Image
+              src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1920&q=80"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="eh-hero-img"
+            />
+          </div>
           <div className="eh-hero-bg" aria-hidden />
           <div className="eh-hero-grid" data-parallax="0.1" aria-hidden />
           <div className="eh-hero-glow" data-parallax="0.3" aria-hidden />
@@ -75,7 +86,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Fluid feature cards — appear & disappear like water */}
+        {/* Fluid feature cards */}
         <section className="eh-fluid-stack" id="solutions">
           <article className="eh-glow-card" data-fluid>
             <span className="eh-card-num">01</span>
