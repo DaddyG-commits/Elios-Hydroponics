@@ -37,9 +37,9 @@ export default function Home() {
                 <em>living</em> climate solutions.
               </h1>
               <p className="eh-hero-text">
-                Elios Hydroponics designs and builds rooftop greenery systems that bring shade,
-                planting, and cooler surfaces to Canadian buildings — practical systems for real
-                roofs and real winters.
+                Elios Hydroponics designs and builds practical and efficient green hydroponic
+                 systems for rooftops providing climate control and produce - simple, green, lightweight
+                 and efficient solutions to complex problems.
               </p>
               <div className="eh-hero-actions">
                 <Link href="/chat" className="eh-btn eh-btn-primary eh-btn-lg">
@@ -56,11 +56,11 @@ export default function Home() {
                 </div>
                 <div>
                   <strong>Rooftops</strong>
-                  <span>Shade · plant · cool</span>
+                  <span>Climate · Grow · Eat</span>
                 </div>
                 <div>
                   <strong>Care</strong>
-                  <span>Seasonal support</span>
+                  <span>Maintenance Support</span>
                 </div>
               </div>
             </div>
