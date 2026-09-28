@@ -10,7 +10,7 @@ export default function Navbar() {
     <header className="eh-header">
       <div className="eh-container">
         <div className="eh-nav">
-          <Link href="/" className="eh-brand">
+          <Link href="/" className="eh-brand" style={{ color: '#f4f5f0' }}>
             <span className="eh-brand-mark">E</span>
             <span className="eh-brand-name">Elios Hydroponics</span>
           </Link>
@@ -37,6 +37,9 @@ export default function Navbar() {
         </div>
 
         <div className={`eh-mobile-menu${open ? ' open' : ''}`}>
+          <Link href="/" onClick={() => setOpen(false)}>
+            Home
+          </Link>
           <Link href="/#solutions" onClick={() => setOpen(false)}>Solutions</Link>
           <Link href="/#why" onClick={() => setOpen(false)}>Why us</Link>
           <Link href="/#approach" onClick={() => setOpen(false)}>Approach</Link>

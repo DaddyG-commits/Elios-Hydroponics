@@ -106,10 +106,21 @@ export async function registerUser(input: {
     setSession(remote.user)
     return { ok: true, user: remote.user }
   }
-  if (remote && remote.ok === false && remote.error && !remote.error.includes('DATABASE') && !remote.error.includes('Could not')) {
-    return { ok: false, error: remote.error }
+  // Real validation errors from API (duplicate email, etc.)
+  if (remote && remote.ok === false && remote.error) {
+    const e = remote.error
+    if (
+      !e.includes('DATABASE') &&
+      !e.includes('Neon') &&
+      !e.includes('Could not') &&
+      !e.includes('unavailable') &&
+      !e.includes('tables missing')
+    ) {
+      return { ok: false, error: e }
+    }
   }
 
+  // Offline / DB-down fallback → localStorage so the product still works
   const users = getUsers()
   if (users.some((u) => u.email === email)) {
     return { ok: false, error: 'An account with this email already exists.' }
@@ -140,8 +151,10 @@ export async function loginUser(
   email: string,
   password: string
 ): Promise<{ ok: true; user: SessionUser } | { ok: false; error: string }> {
+  const normalized = email.trim().toLowerCase()
+
   const remote = await api<{ ok: boolean; user?: SessionUser; error?: string }>('/api/account/login', {
-    email,
+    email: normalized,
     password,
   })
   if (remote?.ok && remote.user) {
@@ -149,14 +162,25 @@ export async function loginUser(
     return { ok: true, user: remote.user }
   }
 
+  // Always try localStorage accounts (works when Neon is down)
   const users = getUsers()
-  const found = users.find((u) => u.email === email.trim().toLowerCase())
-  if (!found) return { ok: false, error: remote?.error || 'Invalid email or password.' }
-  const hash = await hashPassword(password)
-  if (hash !== found.passwordHash) return { ok: false, error: 'Invalid email or password.' }
-  const { passwordHash: _p, resetToken: _t, resetExpires: _e, ...session } = found
-  setSession(session)
-  return { ok: true, user: session }
+  const found = users.find((u) => u.email === normalized)
+  if (found) {
+    const hash = await hashPassword(password)
+    if (hash === found.passwordHash) {
+      const { passwordHash: _p, resetToken: _t, resetExpires: _e, ...session } = found
+      setSession(session)
+      return { ok: true, user: session }
+    }
+    return { ok: false, error: 'Invalid email or password.' }
+  }
+
+  // No local user — surface remote error or generic
+  if (remote?.error) {
+    // Soften Neon message if account might only exist locally after register failed partially
+    return { ok: false, error: remote.error }
+  }
+  return { ok: false, error: 'Invalid email or password.' }
 }
 
 export async function updateUser(

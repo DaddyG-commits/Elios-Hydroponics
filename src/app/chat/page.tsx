@@ -1,15 +1,16 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { MessageSquare, ArrowRight, Bot } from 'lucide-react'
+import { MessageSquare, ArrowRight, Bot, ArrowLeft } from 'lucide-react'
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Array<{ sender: string; text: string }>>([
     {
       sender: 'ADMIN',
-      text: "Hi! Welcome to Elios Admin Chat 💬. Tell me about your building, roof, city or project goal and we'll help you work out the next step."
+      text: "Hi! Welcome to Elios Chat 💬. Tell me about your building, roof, city or project goal and we'll help you work out the next step."
     }
   ])
   const [input, setInput] = useState('')
@@ -36,10 +37,19 @@ export default function ChatPage() {
     <div className="min-h-screen bg-[#f2f5f0] text-gray-900 flex flex-col">
       <Navbar />
 
-      <main className="flex-1 max-w-3xl mx-auto px-5 py-8 space-y-6 w-full">
+      <main className="flex-1 max-w-3xl mx-auto px-5 pt-24 pb-8 space-y-6 w-full">
+        {/* Clear way back home */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-900 hover:text-emerald-700"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to home
+        </Link>
+
         <div className="space-y-2">
           <span className="text-xs tracking-widest text-emerald-800 uppercase font-semibold flex items-center gap-1">
-            Admin Chat <MessageSquare className="w-3.5 h-3.5" />
+            Chat <MessageSquare className="w-3.5 h-3.5" />
           </span>
           <h1 className="text-3xl font-bold">Chat with Elios about your rooftop project.</h1>
           <p className="text-sm text-gray-600">
@@ -47,7 +57,6 @@ export default function ChatPage() {
           </p>
         </div>
 
-        {/* Sample Prompt Chips */}
         <div className="space-y-2 pt-2">
           {[
             'What information do you need to assess my roof?',
@@ -56,6 +65,7 @@ export default function ChatPage() {
           ].map((prompt, idx) => (
             <button
               key={idx}
+              type="button"
               onClick={() => handleSend(prompt)}
               className="w-full text-left bg-white border border-gray-200 p-3.5 rounded-xl text-sm font-medium hover:bg-emerald-50 transition block text-gray-800"
             >
@@ -64,12 +74,11 @@ export default function ChatPage() {
           ))}
         </div>
 
-        {/* Chat Feed */}
         <div className="bg-white border border-gray-200 rounded-2xl p-4 space-y-4 min-h-[250px]">
           <div className="flex items-center gap-2 border-b pb-3">
             <Bot className="w-5 h-5 text-emerald-800" />
             <div>
-              <h3 className="text-sm font-bold">Elios Admin Chat</h3>
+              <h3 className="text-sm font-bold">Elios Chat</h3>
               <p className="text-xs text-gray-500">Support • Rooftop greening questions</p>
             </div>
           </div>
@@ -90,7 +99,6 @@ export default function ChatPage() {
           </div>
         </div>
 
-        {/* Input Bar */}
         <div className="space-y-2">
           <div className="flex gap-2">
             <input
@@ -102,6 +110,7 @@ export default function ChatPage() {
               className="flex-1 border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800"
             />
             <button
+              type="button"
               onClick={() => handleSend()}
               className="bg-[#1b4332] text-white px-5 rounded-xl flex items-center justify-center hover:bg-emerald-900 transition"
             >
@@ -109,7 +118,10 @@ export default function ChatPage() {
             </button>
           </div>
           <p className="text-xs text-gray-500 text-center">
-            Sign in or create an account to start a private support conversation.
+            Sign in or create an account to start a private support conversation.{' '}
+            <Link href="/" className="text-emerald-800 font-semibold underline">
+              Return home
+            </Link>
           </p>
         </div>
       </main>
