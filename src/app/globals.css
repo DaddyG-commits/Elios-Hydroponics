@@ -46,6 +46,40 @@ button {
   margin: 0 auto;
 }
 
+/* —— Scroll progress (video scrubber feel) —— */
+.eh-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 200;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--accent), #9bd42e);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* —— Reveals —— */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+[data-parallax] {
+  will-change: transform;
+}
+
 /* —— Nav —— */
 .eh-header {
   position: fixed;
@@ -164,12 +198,12 @@ button {
 
 /* —— Hero —— */
 .eh-hero {
-  min-height: 88vh;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: 120px 0 100px;
   background:
     linear-gradient(90deg, #080908 0%, rgba(8, 9, 8, 0.88) 42%, rgba(8, 9, 8, 0.35) 78%),
     radial-gradient(circle at 78% 32%, rgba(199, 255, 69, 0.14), transparent 32%),
@@ -278,6 +312,150 @@ button {
   letter-spacing: 0.08em;
 }
 
+.eh-scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  z-index: 3;
+}
+
+.eh-scroll-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: eh-scroll-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes eh-scroll-pulse {
+  0%, 100% { opacity: 0.35; transform: scaleY(0.7); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* —— Sticky story frames (video-like) —— */
+.eh-story {
+  position: relative;
+  background: #0a0c0a;
+}
+
+.eh-story-track {
+  /* Each frame gets viewport height → scroll feels like frames of a film */
+  height: 400vh;
+}
+
+.eh-story-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 0 40px;
+  overflow: hidden;
+}
+
+.eh-story-label {
+  position: absolute;
+  top: 88px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  font-weight: 800;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.eh-story-frames {
+  width: min(calc(100% - 40px), 720px);
+  margin: 0 auto;
+  position: relative;
+  height: min(70vh, 480px);
+}
+
+.eh-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: linear-gradient(145deg, #151915, #0d0f0d);
+  opacity: calc(0.15 + var(--frame-intensity, 0) * 0.85);
+  transform: scale(calc(0.94 + var(--frame-intensity, 0) * 0.06))
+    translateY(calc((1 - var(--frame-intensity, 0)) * 12px));
+  transition: opacity 0.15s linear, transform 0.15s linear;
+  pointer-events: none;
+}
+
+.eh-frame:nth-child(1) { z-index: 1; }
+.eh-frame:nth-child(2) { z-index: 2; }
+.eh-frame:nth-child(3) { z-index: 3; }
+.eh-frame:nth-child(4) {
+  z-index: 4;
+  pointer-events: auto;
+}
+
+.eh-frame-num {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.eh-frame h2 {
+  font-size: clamp(28px, 5vw, 42px);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  margin: 0 0 14px;
+  font-weight: 800;
+}
+
+.eh-frame p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 520px;
+}
+
+/* Stack frames with scroll-driven visibility via JS intensity.
+   Fallback: show them in sequence with scroll-snap on mobile */
+@media (max-width: 700px) {
+  .eh-story-track {
+    height: auto;
+  }
+  .eh-story-sticky {
+    position: relative;
+    height: auto;
+    padding: 80px 0 40px;
+  }
+  .eh-story-frames {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .eh-frame {
+    position: relative;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto;
+  }
+}
+
 /* —— Sections —— */
 .eh-section {
   padding: 88px 0;
@@ -356,7 +534,6 @@ button {
   font-size: 14px;
 }
 
-/* Process */
 .eh-process {
   background: #111411;
   border-top: 1px solid var(--line);
@@ -403,7 +580,6 @@ button {
   line-height: 1.55;
 }
 
-/* Stats */
 .eh-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -436,7 +612,6 @@ button {
   font-size: 10px;
 }
 
-/* Mission band */
 .eh-mission {
   border: 1px solid var(--line);
   border-radius: 28px;
@@ -464,7 +639,6 @@ button {
   max-width: 560px;
 }
 
-/* CTA */
 .eh-cta {
   position: relative;
   overflow: hidden;
@@ -493,7 +667,6 @@ button {
   color: white;
 }
 
-/* Footer */
 .eh-footer {
   background: #080908;
   padding: 56px 0 28px;
@@ -594,5 +767,37 @@ button {
   }
   .eh-hero-proof {
     gap: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .eh-scroll-line {
+    animation: none;
+  }
+  .eh-story-track {
+    height: auto;
+  }
+  .eh-story-sticky {
+    position: relative;
+    height: auto;
+  }
+  .eh-frame {
+    position: relative;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .eh-story-frames {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 }

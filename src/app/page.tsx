@@ -1,19 +1,21 @@
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import ScrollFluid from '@/components/ScrollFluid'
 
 export default function Home() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <ScrollFluid />
       <Navbar />
 
       <main style={{ flex: 1 }}>
         {/* Hero */}
         <section className="eh-hero">
-          <div className="eh-hero-grid" aria-hidden />
-          <div className="eh-hero-glow" aria-hidden />
+          <div className="eh-hero-grid" data-parallax="0.12" aria-hidden />
+          <div className="eh-hero-glow" data-parallax="0.35" aria-hidden />
           <div className="eh-container">
-            <div className="eh-hero-inner">
+            <div className="eh-hero-inner" data-reveal>
               <div className="eh-eyebrow">
                 <span className="dot" />
                 🍁 Canadian rooftop greening
@@ -30,8 +32,8 @@ export default function Home() {
                 <Link href="/chat" className="eh-btn eh-btn-primary">
                   Open admin chat →
                 </Link>
-                <a href="#solutions" className="eh-btn eh-btn-ghost">
-                  Explore solutions
+                <a href="#story" className="eh-btn eh-btn-ghost">
+                  Watch the story ↓
                 </a>
               </div>
               <div className="eh-hero-proof">
@@ -50,12 +52,62 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div className="eh-scroll-hint" aria-hidden>
+            <span>Scroll</span>
+            <span className="eh-scroll-line" />
+          </div>
+        </section>
+
+        {/* Fluid story — sticky frames like a video */}
+        <section className="eh-story" id="story">
+          <div className="eh-story-track">
+            <div className="eh-story-sticky">
+              <div className="eh-story-label">The story</div>
+              <div className="eh-story-frames">
+                <article className="eh-frame" data-frame>
+                  <span className="eh-frame-num">01</span>
+                  <h2>Empty roofs are wasted climate space.</h2>
+                  <p>
+                    Across Canadian cities, flat and low-slope roofs sit idle under sun and snow.
+                    Elios turns that surface into living infrastructure.
+                  </p>
+                </article>
+                <article className="eh-frame" data-frame>
+                  <span className="eh-frame-num">02</span>
+                  <h2>Shade. Plant. Cool.</h2>
+                  <p>
+                    Vegetation softens heat, adds greenery to the skyline, and helps buildings breathe
+                    through warm summers — designed for freeze–thaw winters too.
+                  </p>
+                </article>
+                <article className="eh-frame" data-frame>
+                  <span className="eh-frame-num">03</span>
+                  <h2>Systems built for real Canadian roofs.</h2>
+                  <p>
+                    From assessment to care: structure, exposure, waterproofing, and seasonal
+                    maintenance — not one-size-fits-all landscaping.
+                  </p>
+                </article>
+                <article className="eh-frame" data-frame>
+                  <span className="eh-frame-num">04</span>
+                  <h2>Greener rooftops. Cooler futures.</h2>
+                  <p>
+                    One roof at a time — practical greening that works for people, buildings, and
+                    cities.
+                  </p>
+                  <Link href="/chat" className="eh-btn eh-btn-primary" style={{ marginTop: 20 }}>
+                    Start a conversation →
+                  </Link>
+                </article>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Mission */}
         <section className="eh-section" id="solutions">
           <div className="eh-container">
-            <div className="eh-mission">
+            <div className="eh-mission" data-reveal>
               <div className="eh-mission-inner">
                 <span className="eh-kicker">Our mission</span>
                 <h2 style={{ marginTop: 10 }}>
@@ -73,17 +125,19 @@ export default function Home() {
         {/* Why */}
         <section className="eh-section" id="why" style={{ paddingTop: 24 }}>
           <div className="eh-container">
-            <span className="eh-kicker">Why Elios</span>
-            <h2>
-              Green infrastructure with a <em>clear</em> purpose.
-            </h2>
-            <p className="eh-muted">
-              Purpose-built planting layers that moderate heat, add life to the skyline, and fit how
-              Canadian buildings are actually maintained.
-            </p>
+            <div data-reveal>
+              <span className="eh-kicker">Why Elios</span>
+              <h2>
+                Green infrastructure with a <em>clear</em> purpose.
+              </h2>
+              <p className="eh-muted">
+                Purpose-built planting layers that moderate heat, add life to the skyline, and fit how
+                Canadian buildings are actually maintained.
+              </p>
+            </div>
 
             <div className="eh-feature-grid">
-              <div className="eh-feature-card large">
+              <div className="eh-feature-card large" data-reveal>
                 <div className="icon">☀</div>
                 <h3>Cooler roofs</h3>
                 <p>
@@ -91,7 +145,7 @@ export default function Home() {
                   summers — reducing radiant load on the structure below.
                 </p>
               </div>
-              <div className="eh-feature-card">
+              <div className="eh-feature-card" data-reveal>
                 <div className="icon">🌿</div>
                 <h3>Smarter greenery</h3>
                 <p>
@@ -99,7 +153,7 @@ export default function Home() {
                   not just decoration.
                 </p>
               </div>
-              <div className="eh-feature-card">
+              <div className="eh-feature-card" data-reveal>
                 <div className="icon">⚡</div>
                 <h3>Lower cooling demand</h3>
                 <p>
@@ -110,7 +164,7 @@ export default function Home() {
             </div>
 
             <div className="eh-feature-grid" style={{ marginTop: 12 }}>
-              <div className="eh-feature-card">
+              <div className="eh-feature-card" data-reveal>
                 <div className="icon">✓</div>
                 <h3>Built for Canada</h3>
                 <p>
@@ -118,7 +172,7 @@ export default function Home() {
                   maintenance.
                 </p>
               </div>
-              <div className="eh-feature-card">
+              <div className="eh-feature-card" data-reveal>
                 <div className="icon">🏙</div>
                 <h3>City-ready</h3>
                 <p>
@@ -126,7 +180,7 @@ export default function Home() {
                   urban constraints.
                 </p>
               </div>
-              <div className="eh-feature-card">
+              <div className="eh-feature-card" data-reveal>
                 <div className="icon">💧</div>
                 <h3>Hydroponic options</h3>
                 <p>
@@ -141,34 +195,36 @@ export default function Home() {
         {/* Approach */}
         <section className="eh-section eh-process" id="approach">
           <div className="eh-container">
-            <span className="eh-kicker">The Elios approach</span>
-            <h2>
-              From empty roof to <em>living</em> layer.
-            </h2>
-            <p className="eh-muted">
-              A clear path from assessment to ongoing care — so your rooftop performs season after
-              season.
-            </p>
+            <div data-reveal>
+              <span className="eh-kicker">The Elios approach</span>
+              <h2>
+                From empty roof to <em>living</em> layer.
+              </h2>
+              <p className="eh-muted">
+                A clear path from assessment to ongoing care — so your rooftop performs season after
+                season.
+              </p>
+            </div>
             <div className="eh-steps">
-              <div className="eh-step">
+              <div className="eh-step" data-reveal>
                 <span>01</span>
                 <div className="eh-step-line" />
                 <h3>Assess</h3>
                 <p>Roof, structure, exposure, access, and your goals.</p>
               </div>
-              <div className="eh-step">
+              <div className="eh-step" data-reveal>
                 <span>02</span>
                 <div className="eh-step-line" />
                 <h3>Design</h3>
                 <p>Planting plan and system specification for Canadian conditions.</p>
               </div>
-              <div className="eh-step">
+              <div className="eh-step" data-reveal>
                 <span>03</span>
                 <div className="eh-step-line" />
                 <h3>Build</h3>
                 <p>Professional installation with attention to waterproofing and load.</p>
               </div>
-              <div className="eh-step">
+              <div className="eh-step" data-reveal>
                 <span>04</span>
                 <div className="eh-step-line" />
                 <h3>Care</h3>
@@ -180,7 +236,7 @@ export default function Home() {
 
         {/* Stats */}
         <div className="eh-container" style={{ padding: '0' }}>
-          <div className="eh-stats">
+          <div className="eh-stats" data-reveal>
             <div className="eh-stat">
               <strong>🍁</strong>
               <span>Canadian focus</span>
@@ -197,7 +253,7 @@ export default function Home() {
         </div>
 
         {/* CTA */}
-        <section className="eh-cta">
+        <section className="eh-cta" data-reveal>
           <div className="eh-container">
             <span className="eh-kicker" style={{ color: '#43531f' }}>
               Ready to start?
