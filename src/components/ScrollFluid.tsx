@@ -3,11 +3,11 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Video-like scroll motion:
- * - soft inertia / progress bar
- * - parallax layers on hero
- * - sections fade/slide in as you scroll
- * - sticky "story frames" that pin like film frames
+ * CryptoByt-style fluid scroll:
+ * - progress bar
+ * - cards fade in / out like water as they enter & leave the viewport
+ * - parallax layers
+ * - sticky story frames crossfade
  */
 export default function ScrollFluid() {
   const progressRef = useRef<HTMLDivElement>(null)
@@ -18,8 +18,8 @@ export default function ScrollFluid() {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const progressEl = progressRef.current
-    const reveals = Array.from(
-      document.querySelectorAll<HTMLElement>('[data-reveal]')
+    const fluidCards = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-fluid]')
     )
     const parallax = Array.from(
       document.querySelectorAll<HTMLElement>('[data-parallax]')
@@ -40,28 +40,43 @@ export default function ScrollFluid() {
         progressEl.style.transform = `scaleX(${p})`
       }
 
-      if (prefersReduced) return
+      if (prefersReduced) {
+        fluidCards.forEach((el) => {
+          el.style.opacity = '1'
+          el.style.transform = 'none'
+        })
+        return
+      }
 
       const vh = window.innerHeight
+
+      // Water-like: cards rise into view, peak in center, fade as they leave
+      fluidCards.forEach((el) => {
+        const rect = el.getBoundingClientRect()
+        const mid = rect.top + rect.height / 2
+        // 0 at top edge, 1 at center, 0 at bottom edge
+        const distFromCenter = (mid - vh / 2) / (vh * 0.72)
+        const intensity = Math.max(0, 1 - Math.abs(distFromCenter))
+        // Soft ease
+        const ease = intensity * intensity * (3 - 2 * intensity)
+        const y = (1 - ease) * (distFromCenter > 0 ? 48 : -28)
+        const scale = 0.94 + ease * 0.06
+        el.style.opacity = String(0.12 + ease * 0.88)
+        el.style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`
+        el.style.willChange = 'opacity, transform'
+      })
 
       parallax.forEach((el) => {
         const speed = Number(el.dataset.parallax) || 0.25
         const rect = el.getBoundingClientRect()
         const offset = (rect.top + rect.height / 2 - vh / 2) * speed
-        el.style.transform = `translate3d(0, ${offset * -0.15}px, 0)`
-      })
-
-      reveals.forEach((el) => {
-        const rect = el.getBoundingClientRect()
-        const visible = rect.top < vh * 0.88 && rect.bottom > vh * 0.08
-        if (visible) el.classList.add('is-visible')
+        el.style.transform = `translate3d(0, ${offset * -0.12}px, 0)`
       })
 
       frames.forEach((el) => {
         const rect = el.getBoundingClientRect()
-        // Progress within viewport for opacity / scale feel
         const mid = rect.top + rect.height / 2
-        const dist = Math.abs(mid - vh / 2) / (vh * 0.6)
+        const dist = Math.abs(mid - vh / 2) / (vh * 0.55)
         const intensity = Math.max(0, 1 - dist)
         el.style.setProperty('--frame-intensity', String(intensity))
       })
@@ -84,11 +99,5 @@ export default function ScrollFluid() {
     }
   }, [])
 
-  return (
-    <div
-      ref={progressRef}
-      className="eh-scroll-progress"
-      aria-hidden
-    />
-  )
+  return <div ref={progressRef} className="eh-scroll-progress" aria-hidden />
 }

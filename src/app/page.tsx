@@ -10,18 +10,20 @@ export default function Home() {
       <Navbar />
 
       <main style={{ flex: 1 }}>
-        {/* Hero */}
+        {/* Hero — CryptoByt layout */}
         <section className="eh-hero">
-          <div className="eh-hero-grid" data-parallax="0.12" aria-hidden />
-          <div className="eh-hero-glow" data-parallax="0.35" aria-hidden />
+          <div className="eh-hero-bg" aria-hidden />
+          <div className="eh-hero-grid" data-parallax="0.1" aria-hidden />
+          <div className="eh-hero-glow" data-parallax="0.3" aria-hidden />
           <div className="eh-container">
-            <div className="eh-hero-inner" data-reveal>
+            <div className="eh-hero-inner" data-fluid>
               <div className="eh-eyebrow">
                 <span className="dot" />
                 🍁 Canadian rooftop greening
               </div>
               <h1>
-                Turn rooftops into <em>living</em> climate solutions.
+                Turn rooftops into{' '}
+                <em>living</em> climate solutions.
               </h1>
               <p className="eh-hero-text">
                 Elios Hydroponics designs and builds rooftop greenery systems that bring shade,
@@ -29,10 +31,10 @@ export default function Home() {
                 roofs and real winters.
               </p>
               <div className="eh-hero-actions">
-                <Link href="/chat" className="eh-btn eh-btn-primary">
-                  Open admin chat →
+                <Link href="/chat" className="eh-btn eh-btn-primary eh-btn-lg">
+                  Open chat →
                 </Link>
-                <a href="#story" className="eh-btn eh-btn-ghost">
+                <a href="#story" className="eh-btn eh-btn-ghost eh-btn-lg">
                   Watch the story ↓
                 </a>
               </div>
@@ -58,7 +60,93 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Fluid story — sticky frames like a video */}
+        {/* Bridge headline */}
+        <section className="eh-bridge">
+          <div className="eh-container" data-fluid>
+            <p className="eh-bridge-kicker">The Elios platform</p>
+            <h2>
+              Everything rooftop.{' '}
+              <em>In one place.</em>
+            </h2>
+            <p className="eh-muted" style={{ maxWidth: 480, margin: '16px auto 0', textAlign: 'center' }}>
+              Assess, design, build, and care for living roof systems — with guidance built for
+              Canadian climate.
+            </p>
+          </div>
+        </section>
+
+        {/* Fluid feature cards — appear & disappear like water */}
+        <section className="eh-fluid-stack" id="solutions">
+          <article className="eh-glow-card" data-fluid>
+            <span className="eh-card-num">01</span>
+            <div className="eh-card-orb" aria-hidden />
+            <span className="eh-card-tag">Shade</span>
+            <h3>Cooler roofs under Canadian sun.</h3>
+            <p>
+              Vegetation shades roof surfaces and moderates heat in warm summers — reducing radiant
+              load on the structure below.
+            </p>
+          </article>
+
+          <article className="eh-glow-card" data-fluid>
+            <span className="eh-card-num">02</span>
+            <div className="eh-card-orb eh-card-orb-2" aria-hidden />
+            <span className="eh-card-tag">Plant</span>
+            <h3>Living infrastructure, not decoration.</h3>
+            <p>
+              Purpose-designed planting systems turn unused roof area into green infrastructure that
+              works season after season.
+            </p>
+          </article>
+
+          <article className="eh-glow-card" data-fluid>
+            <span className="eh-card-num">03</span>
+            <div className="eh-card-orb eh-card-orb-3" aria-hidden />
+            <span className="eh-card-tag">Cool</span>
+            <h3>Lower cooling demand where it counts.</h3>
+            <p>
+              Green roof systems help reduce heat flow and cooling requirements when paired with solid
+              building practices.
+            </p>
+          </article>
+        </section>
+
+        {/* Why band */}
+        <section className="eh-section" id="why">
+          <div className="eh-container">
+            <div data-fluid style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto 40px' }}>
+              <span className="eh-kicker">Why Elios</span>
+              <h2>
+                Green roofs should feel simple,{' '}
+                <em>not complicated.</em>
+              </h2>
+              <p className="eh-muted" style={{ margin: '16px auto 0' }}>
+                Clear systems planned around structure, exposure, freeze–thaw, and how Canadian
+                buildings are actually maintained.
+              </p>
+            </div>
+
+            <div className="eh-feature-grid">
+              <div className="eh-feature-card" data-fluid>
+                <div className="icon">✓</div>
+                <h3>Built for Canada</h3>
+                <p>Local climate, roof conditions, and practical maintenance — not imported templates.</p>
+              </div>
+              <div className="eh-feature-card" data-fluid>
+                <div className="icon">🏙</div>
+                <h3>City-ready</h3>
+                <p>Low-slope commercial decks to residential flat roofs — sized for real constraints.</p>
+              </div>
+              <div className="eh-feature-card" data-fluid>
+                <div className="icon">💧</div>
+                <h3>Hydroponic options</h3>
+                <p>Efficient water use where traditional soil systems are not ideal.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sticky story frames */}
         <section className="eh-story" id="story">
           <div className="eh-story-track">
             <div className="eh-story-sticky">
@@ -104,99 +192,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Mission */}
-        <section className="eh-section" id="solutions">
-          <div className="eh-container">
-            <div className="eh-mission" data-reveal>
-              <div className="eh-mission-inner">
-                <span className="eh-kicker">Our mission</span>
-                <h2 style={{ marginTop: 10 }}>
-                  Greener rooftops. <em>Cooler</em> futures.
-                </h2>
-                <p className="eh-muted" style={{ margin: 0 }}>
-                  We make underused roof space work harder for people, buildings, and cities — with
-                  systems planned around structure, exposure, and Canadian seasons.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why */}
-        <section className="eh-section" id="why" style={{ paddingTop: 24 }}>
-          <div className="eh-container">
-            <div data-reveal>
-              <span className="eh-kicker">Why Elios</span>
-              <h2>
-                Green infrastructure with a <em>clear</em> purpose.
-              </h2>
-              <p className="eh-muted">
-                Purpose-built planting layers that moderate heat, add life to the skyline, and fit how
-                Canadian buildings are actually maintained.
-              </p>
-            </div>
-
-            <div className="eh-feature-grid">
-              <div className="eh-feature-card large" data-reveal>
-                <div className="icon">☀</div>
-                <h3>Cooler roofs</h3>
-                <p>
-                  Vegetation shades roof surfaces and helps moderate heat during warm Canadian
-                  summers — reducing radiant load on the structure below.
-                </p>
-              </div>
-              <div className="eh-feature-card" data-reveal>
-                <div className="icon">🌿</div>
-                <h3>Smarter greenery</h3>
-                <p>
-                  Purpose-designed planting systems turn unused roof area into living infrastructure,
-                  not just decoration.
-                </p>
-              </div>
-              <div className="eh-feature-card" data-reveal>
-                <div className="icon">⚡</div>
-                <h3>Lower cooling demand</h3>
-                <p>
-                  Green roof systems can help reduce heat flow and cooling requirements when paired
-                  with solid building practices.
-                </p>
-              </div>
-            </div>
-
-            <div className="eh-feature-grid" style={{ marginTop: 12 }}>
-              <div className="eh-feature-card" data-reveal>
-                <div className="icon">✓</div>
-                <h3>Built for Canada</h3>
-                <p>
-                  Solutions planned around local climate, roof conditions, freeze–thaw, and practical
-                  maintenance.
-                </p>
-              </div>
-              <div className="eh-feature-card" data-reveal>
-                <div className="icon">🏙</div>
-                <h3>City-ready</h3>
-                <p>
-                  From low-slope commercial decks to residential flat roofs — systems sized for real
-                  urban constraints.
-                </p>
-              </div>
-              <div className="eh-feature-card" data-reveal>
-                <div className="icon">💧</div>
-                <h3>Hydroponic options</h3>
-                <p>
-                  Efficient water use and controlled planting environments where traditional soil
-                  systems are not ideal.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Approach */}
         <section className="eh-section eh-process" id="approach">
           <div className="eh-container">
-            <div data-reveal>
-              <span className="eh-kicker">The Elios approach</span>
+            <div data-fluid>
+              <span className="eh-kicker">How it works</span>
               <h2>
                 From empty roof to <em>living</em> layer.
               </h2>
@@ -206,25 +206,25 @@ export default function Home() {
               </p>
             </div>
             <div className="eh-steps">
-              <div className="eh-step" data-reveal>
+              <div className="eh-step" data-fluid>
                 <span>01</span>
                 <div className="eh-step-line" />
                 <h3>Assess</h3>
                 <p>Roof, structure, exposure, access, and your goals.</p>
               </div>
-              <div className="eh-step" data-reveal>
+              <div className="eh-step" data-fluid>
                 <span>02</span>
                 <div className="eh-step-line" />
                 <h3>Design</h3>
                 <p>Planting plan and system specification for Canadian conditions.</p>
               </div>
-              <div className="eh-step" data-reveal>
+              <div className="eh-step" data-fluid>
                 <span>03</span>
                 <div className="eh-step-line" />
                 <h3>Build</h3>
                 <p>Professional installation with attention to waterproofing and load.</p>
               </div>
-              <div className="eh-step" data-reveal>
+              <div className="eh-step" data-fluid>
                 <span>04</span>
                 <div className="eh-step-line" />
                 <h3>Care</h3>
@@ -235,8 +235,8 @@ export default function Home() {
         </section>
 
         {/* Stats */}
-        <div className="eh-container" style={{ padding: '0' }}>
-          <div className="eh-stats" data-reveal>
+        <div className="eh-container" style={{ padding: 0 }}>
+          <div className="eh-stats" data-fluid>
             <div className="eh-stat">
               <strong>🍁</strong>
               <span>Canadian focus</span>
@@ -247,13 +247,13 @@ export default function Home() {
             </div>
             <div className="eh-stat">
               <strong>24/7</strong>
-              <span>Admin chat access</span>
+              <span>Chat access</span>
             </div>
           </div>
         </div>
 
         {/* CTA */}
-        <section className="eh-cta" data-reveal>
+        <section className="eh-cta" data-fluid>
           <div className="eh-container">
             <span className="eh-kicker" style={{ color: '#43531f' }}>
               Ready to start?
@@ -264,7 +264,7 @@ export default function Home() {
               practical next-step guidance.
             </p>
             <Link href="/chat" className="eh-btn">
-              Start a conversation →
+              Open chat →
             </Link>
           </div>
         </section>

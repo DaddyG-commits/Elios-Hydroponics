@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -13,15 +12,14 @@ export default function Navbar() {
         <div className="eh-nav">
           <Link href="/" className="eh-brand">
             <span className="eh-brand-mark">E</span>
-            <span className="hidden sm:inline">Elios Hydroponics</span>
-            <span className="sm:hidden">Elios</span>
+            <span className="eh-brand-name">Elios Hydroponics</span>
           </Link>
 
           <div className="eh-nav-links">
             <Link href="/#solutions">Solutions</Link>
-            <Link href="/#why">Why green roofs</Link>
+            <Link href="/#why">Why us</Link>
             <Link href="/#approach">Approach</Link>
-            <Link href="/chat">Admin chat</Link>
+            <Link href="/chat">Chat</Link>
             <Link href="/login" className="eh-btn eh-btn-primary" style={{ padding: '10px 16px' }}>
               Sign in
             </Link>
@@ -40,9 +38,9 @@ export default function Navbar() {
 
         <div className={`eh-mobile-menu${open ? ' open' : ''}`}>
           <Link href="/#solutions" onClick={() => setOpen(false)}>Solutions</Link>
-          <Link href="/#why" onClick={() => setOpen(false)}>Why green roofs</Link>
+          <Link href="/#why" onClick={() => setOpen(false)}>Why us</Link>
           <Link href="/#approach" onClick={() => setOpen(false)}>Approach</Link>
-          <Link href="/chat" onClick={() => setOpen(false)}>Admin chat</Link>
+          <Link href="/chat" onClick={() => setOpen(false)}>Chat</Link>
           <Link
             href="/login"
             onClick={() => setOpen(false)}

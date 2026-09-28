@@ -17,9 +17,9 @@ export default function Footer() {
               <h4>Explore</h4>
               <ul>
                 <li><Link href="/#solutions">Solutions</Link></li>
-                <li><Link href="/#why">Why green roofs</Link></li>
+                <li><Link href="/#why">Why us</Link></li>
                 <li><Link href="/#approach">Approach</Link></li>
-                <li><Link href="/chat">Admin chat</Link></li>
+                <li><Link href="/chat">Chat</Link></li>
               </ul>
             </div>
             <div>
