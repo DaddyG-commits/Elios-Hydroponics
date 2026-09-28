@@ -1,122 +1,216 @@
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { MessageSquare, ArrowRight, Sun, Leaf, Zap, CheckCircle2 } from 'lucide-react'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f2f5f0] text-gray-900 flex flex-col">
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
 
-      <main className="flex-1 max-w-4xl mx-auto px-5 py-8 space-y-12">
-        {/* Hero Section */}
-        <section className="space-y-6">
-          <div className="flex items-center gap-2 text-emerald-800 font-semibold text-sm">
-            <span>🍁</span> Canadian rooftop greening
+      <main style={{ flex: 1 }}>
+        {/* Hero */}
+        <section className="eh-hero">
+          <div className="eh-hero-grid" aria-hidden />
+          <div className="eh-hero-glow" aria-hidden />
+          <div className="eh-container">
+            <div className="eh-hero-inner">
+              <div className="eh-eyebrow">
+                <span className="dot" />
+                🍁 Canadian rooftop greening
+              </div>
+              <h1>
+                Turn rooftops into <em>living</em> climate solutions.
+              </h1>
+              <p className="eh-hero-text">
+                Elios Hydroponics designs and builds rooftop greenery systems that bring shade,
+                planting, and cooler surfaces to Canadian buildings — practical systems for real
+                roofs and real winters.
+              </p>
+              <div className="eh-hero-actions">
+                <Link href="/chat" className="eh-btn eh-btn-primary">
+                  Open admin chat →
+                </Link>
+                <a href="#solutions" className="eh-btn eh-btn-ghost">
+                  Explore solutions
+                </a>
+              </div>
+              <div className="eh-hero-proof">
+                <div>
+                  <strong>Canada</strong>
+                  <span>Climate-ready design</span>
+                </div>
+                <div>
+                  <strong>Rooftops</strong>
+                  <span>Shade · plant · cool</span>
+                </div>
+                <div>
+                  <strong>Care</strong>
+                  <span>Seasonal support</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
-            Turn rooftops into living climate solutions.
-          </h1>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Elios Hydroponics designs and builds rooftop greenery systems that bring shade, planting and cooler surfaces to Canadian buildings.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-2">
-            <Link 
-              href="/chat" 
-              className="bg-[#1b4332] text-white px-6 py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-emerald-900 transition"
-            >
-              Open Admin Chat <MessageSquare className="w-4 h-4" /> <ArrowRight className="w-4 h-4" />
+        </section>
+
+        {/* Mission */}
+        <section className="eh-section" id="solutions">
+          <div className="eh-container">
+            <div className="eh-mission">
+              <div className="eh-mission-inner">
+                <span className="eh-kicker">Our mission</span>
+                <h2 style={{ marginTop: 10 }}>
+                  Greener rooftops. <em>Cooler</em> futures.
+                </h2>
+                <p className="eh-muted" style={{ margin: 0 }}>
+                  We make underused roof space work harder for people, buildings, and cities — with
+                  systems planned around structure, exposure, and Canadian seasons.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why */}
+        <section className="eh-section" id="why" style={{ paddingTop: 24 }}>
+          <div className="eh-container">
+            <span className="eh-kicker">Why Elios</span>
+            <h2>
+              Green infrastructure with a <em>clear</em> purpose.
+            </h2>
+            <p className="eh-muted">
+              Purpose-built planting layers that moderate heat, add life to the skyline, and fit how
+              Canadian buildings are actually maintained.
+            </p>
+
+            <div className="eh-feature-grid">
+              <div className="eh-feature-card large">
+                <div className="icon">☀</div>
+                <h3>Cooler roofs</h3>
+                <p>
+                  Vegetation shades roof surfaces and helps moderate heat during warm Canadian
+                  summers — reducing radiant load on the structure below.
+                </p>
+              </div>
+              <div className="eh-feature-card">
+                <div className="icon">🌿</div>
+                <h3>Smarter greenery</h3>
+                <p>
+                  Purpose-designed planting systems turn unused roof area into living infrastructure,
+                  not just decoration.
+                </p>
+              </div>
+              <div className="eh-feature-card">
+                <div className="icon">⚡</div>
+                <h3>Lower cooling demand</h3>
+                <p>
+                  Green roof systems can help reduce heat flow and cooling requirements when paired
+                  with solid building practices.
+                </p>
+              </div>
+            </div>
+
+            <div className="eh-feature-grid" style={{ marginTop: 12 }}>
+              <div className="eh-feature-card">
+                <div className="icon">✓</div>
+                <h3>Built for Canada</h3>
+                <p>
+                  Solutions planned around local climate, roof conditions, freeze–thaw, and practical
+                  maintenance.
+                </p>
+              </div>
+              <div className="eh-feature-card">
+                <div className="icon">🏙</div>
+                <h3>City-ready</h3>
+                <p>
+                  From low-slope commercial decks to residential flat roofs — systems sized for real
+                  urban constraints.
+                </p>
+              </div>
+              <div className="eh-feature-card">
+                <div className="icon">💧</div>
+                <h3>Hydroponic options</h3>
+                <p>
+                  Efficient water use and controlled planting environments where traditional soil
+                  systems are not ideal.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Approach */}
+        <section className="eh-section eh-process" id="approach">
+          <div className="eh-container">
+            <span className="eh-kicker">The Elios approach</span>
+            <h2>
+              From empty roof to <em>living</em> layer.
+            </h2>
+            <p className="eh-muted">
+              A clear path from assessment to ongoing care — so your rooftop performs season after
+              season.
+            </p>
+            <div className="eh-steps">
+              <div className="eh-step">
+                <span>01</span>
+                <div className="eh-step-line" />
+                <h3>Assess</h3>
+                <p>Roof, structure, exposure, access, and your goals.</p>
+              </div>
+              <div className="eh-step">
+                <span>02</span>
+                <div className="eh-step-line" />
+                <h3>Design</h3>
+                <p>Planting plan and system specification for Canadian conditions.</p>
+              </div>
+              <div className="eh-step">
+                <span>03</span>
+                <div className="eh-step-line" />
+                <h3>Build</h3>
+                <p>Professional installation with attention to waterproofing and load.</p>
+              </div>
+              <div className="eh-step">
+                <span>04</span>
+                <div className="eh-step-line" />
+                <h3>Care</h3>
+                <p>Maintenance guidance and seasonal support when you need it.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats */}
+        <div className="eh-container" style={{ padding: '0' }}>
+          <div className="eh-stats">
+            <div className="eh-stat">
+              <strong>🍁</strong>
+              <span>Canadian focus</span>
+            </div>
+            <div className="eh-stat">
+              <strong>4</strong>
+              <span>Step delivery path</span>
+            </div>
+            <div className="eh-stat">
+              <strong>24/7</strong>
+              <span>Admin chat access</span>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <section className="eh-cta">
+          <div className="eh-container">
+            <span className="eh-kicker" style={{ color: '#43531f' }}>
+              Ready to start?
+            </span>
+            <h2>Have a rooftop in mind?</h2>
+            <p>
+              Tell our team what you are working with — location, roof type, and goals — and get
+              practical next-step guidance.
+            </p>
+            <Link href="/chat" className="eh-btn">
+              Start a conversation →
             </Link>
-            <a 
-              href="#solutions" 
-              className="border border-gray-400 text-gray-800 px-6 py-3.5 rounded-xl font-semibold text-center hover:bg-gray-200 transition"
-            >
-              Explore solutions
-            </a>
           </div>
-          <div className="flex items-center gap-2 text-xs text-gray-600 pt-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-            Designed with practical roof, climate and maintenance considerations in mind.
-          </div>
-        </section>
-
-        {/* Mission Graphic Banner */}
-        <section id="about" className="bg-[#1b4332] text-white rounded-3xl p-8 space-y-4">
-          <span className="text-xs tracking-widest text-emerald-300 uppercase font-semibold">Our mission</span>
-          <h2 className="text-2xl sm:text-3xl font-bold">Greener rooftops. Cooler futures.</h2>
-          <p className="text-emerald-100">
-            We make underused roof space work harder for people, buildings and cities.
-          </p>
-        </section>
-
-        {/* Feature Cards */}
-        <section id="why-green-roofs" className="space-y-4">
-          <span className="text-xs tracking-widest text-emerald-800 uppercase font-semibold">Why Elios</span>
-          <h2 className="text-3xl font-bold">Green infrastructure with a clear purpose.</h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-3">
-              <Sun className="w-6 h-6 text-emerald-700" />
-              <h3 className="font-bold text-lg">Cooler roofs</h3>
-              <p className="text-sm text-gray-600">Vegetation shades roof surfaces and helps moderate heat during warm Canadian summers.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-3">
-              <Leaf className="w-6 h-6 text-emerald-700" />
-              <h3 className="font-bold text-lg">Smarter greenery</h3>
-              <p className="text-sm text-gray-600">Purpose-designed planting systems turn unused roof area into living infrastructure.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-3">
-              <Zap className="w-6 h-6 text-emerald-700" />
-              <h3 className="font-bold text-lg">Lower cooling demand</h3>
-              <p className="text-sm text-gray-600">Green roof systems can help reduce heat flow and cooling requirements.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-3">
-              <CheckCircle2 className="w-6 h-6 text-emerald-700" />
-              <h3 className="font-bold text-lg">Built for Canada</h3>
-              <p className="text-sm text-gray-600">Solutions are planned around local climate, roof conditions and practical maintenance.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Four Step Approach */}
-        <section id="solutions" className="bg-[#1b4332] text-white p-8 rounded-3xl space-y-6">
-          <span className="text-xs tracking-widest text-emerald-300 uppercase font-semibold">The Elios Approach</span>
-          <h2 className="text-3xl font-bold leading-snug">From empty roof to living layer.</h2>
-          <div className="grid grid-cols-2 gap-4 pt-2">
-            <div className="bg-[#2d5a45] p-4 rounded-xl">
-              <span className="text-emerald-300 text-xs font-bold">01</span>
-              <h4 className="font-bold text-lg">Assess</h4>
-              <p className="text-xs text-emerald-100">Roof, structure, exposure and goals</p>
-            </div>
-            <div className="bg-[#2d5a45] p-4 rounded-xl">
-              <span className="text-emerald-300 text-xs font-bold">02</span>
-              <h4 className="font-bold text-lg">Design</h4>
-              <p className="text-xs text-emerald-100">Planting and system specification</p>
-            </div>
-            <div className="bg-[#2d5a45] p-4 rounded-xl">
-              <span className="text-emerald-300 text-xs font-bold">03</span>
-              <h4 className="font-bold text-lg">Build</h4>
-              <p className="text-xs text-emerald-100">Professional installation</p>
-            </div>
-            <div className="bg-[#2d5a45] p-4 rounded-xl">
-              <span className="text-emerald-300 text-xs font-bold">04</span>
-              <h4 className="font-bold text-lg">Care</h4>
-              <p className="text-xs text-emerald-100">Maintenance and seasonal support</p>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="space-y-4 pt-4">
-          <span className="text-xs tracking-widest text-emerald-800 uppercase font-semibold">Ready to start?</span>
-          <h2 className="text-3xl font-bold">Have a rooftop in mind?</h2>
-          <p className="text-gray-700">Tell our support team what you are working with and get practical next-step guidance.</p>
-          <Link 
-            href="/chat" 
-            className="inline-flex items-center gap-2 bg-[#1b4332] text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-emerald-900 transition"
-          >
-            <MessageSquare className="w-4 h-4" /> Start a conversation
-          </Link>
         </section>
       </main>
 
