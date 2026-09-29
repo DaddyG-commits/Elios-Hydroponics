@@ -1,27 +1,17 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import { Sprout, BarChart3, ShieldCheck, ArrowUpRight, Settings, LogOut, User } from 'lucide-react'
-import { clearSession, getSession, type SessionUser } from '@/lib/user-auth'
+import { Sprout, BarChart3, ShieldCheck, ArrowUpRight, Settings, User } from 'lucide-react'
+import DashboardShell from '@/components/DashboardShell'
+import { getSession, type SessionUser } from '@/lib/user-auth'
+import { useEffect, useState } from 'react'
 
 export default function DashboardPage() {
-  const router = useRouter()
   const [user, setUser] = useState<SessionUser | null>(null)
-  const [ready, setReady] = useState(false)
 
   useEffect(() => {
     setUser(getSession())
-    setReady(true)
   }, [])
-
-  const logout = () => {
-    clearSession()
-    router.push('/login')
-  }
 
   const projects = [
     {
@@ -42,158 +32,111 @@ export default function DashboardPage() {
     },
   ]
 
-  if (!ready) {
-    return (
-      <div className="min-h-screen bg-[#f2f5f0] flex flex-col">
-        <Navbar />
-        <main className="flex-1 max-w-5xl mx-auto px-5 py-8 w-full">
-          <p className="text-sm text-gray-500">Loading…</p>
-        </main>
-        <Footer />
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen bg-[#f2f5f0] text-gray-900 flex flex-col">
-      <Navbar />
-
-      <main className="flex-1 max-w-5xl mx-auto px-5 py-8 w-full space-y-8">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-[#1b4332]">Project Dashboard</h1>
-            <p className="text-xs text-gray-600">
-              {user ? `Welcome, ${user.name}` : 'Sign in to manage your rooftop installations.'}
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {user ? (
-              <>
-                <Link
-                  href="/dashboard/settings"
-                  className="inline-flex items-center gap-1.5 border border-gray-300 bg-white text-xs px-4 py-2.5 rounded-xl font-semibold hover:bg-gray-50"
-                >
-                  <Settings className="w-4 h-4" /> Settings
-                </Link>
-                <button
-                  onClick={logout}
-                  className="inline-flex items-center gap-1.5 border border-gray-300 bg-white text-xs px-4 py-2.5 rounded-xl font-semibold hover:bg-gray-50"
-                >
-                  <LogOut className="w-4 h-4" /> Log out
-                </button>
-              </>
-            ) : (
-              <>
-                <Link href="/login" className="bg-[#1b4332] text-white text-xs px-4 py-2.5 rounded-xl font-semibold">
-                  Sign in
-                </Link>
-                <Link href="/register" className="border border-gray-300 bg-white text-xs px-4 py-2.5 rounded-xl font-semibold">
-                  Create account
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
+    <DashboardShell title="Project Dashboard">
+      <div className="space-y-6 max-w-5xl">
+        <p className="text-sm text-[#9aa398]">
+          {user ? `Welcome back, ${user.name}` : 'Manage your rooftop installations.'}
+        </p>
 
         {user && (
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-5 space-y-3">
-            <h2 className="font-semibold text-sm inline-flex items-center gap-2 text-[#1b4332]">
-              <User className="w-4 h-4" /> Your profile
-            </h2>
+          <div className="bg-[#141714] border border-white/10 rounded-2xl p-5 space-y-3">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="font-semibold text-sm inline-flex items-center gap-2 text-[#c7ff45]">
+                <User className="w-4 h-4" /> Your profile
+              </h2>
+              <Link
+                href="/dashboard/settings"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#c7ff45] hover:underline"
+              >
+                <Settings className="w-3.5 h-3.5" /> Edit
+              </Link>
+            </div>
             <dl className="grid sm:grid-cols-2 gap-3 text-sm">
               <div>
-                <dt className="text-gray-500 text-xs">Name</dt>
-                <dd className="font-medium">{user.name}</dd>
+                <dt className="text-[#6a7268] text-xs">Name</dt>
+                <dd className="font-medium text-white">{user.name}</dd>
               </div>
               <div>
-                <dt className="text-gray-500 text-xs">Email</dt>
-                <dd className="font-medium break-all">{user.email}</dd>
+                <dt className="text-[#6a7268] text-xs">Email</dt>
+                <dd className="font-medium text-white break-all">{user.email}</dd>
               </div>
               <div>
-                <dt className="text-gray-500 text-xs">Phone (Canada)</dt>
-                <dd className="font-medium">🇨🇦 {user.phone}</dd>
+                <dt className="text-[#6a7268] text-xs">Phone (Canada)</dt>
+                <dd className="font-medium text-white">🇨🇦 {user.phone}</dd>
               </div>
               <div>
-                <dt className="text-gray-500 text-xs">Address</dt>
-                <dd className="font-medium">
+                <dt className="text-[#6a7268] text-xs">Address</dt>
+                <dd className="font-medium text-white">
                   {user.address}
                   <br />
                   {user.city}, {user.region} {user.postalCode}
                 </dd>
               </div>
             </dl>
-            <Link href="/dashboard/settings" className="text-xs font-semibold text-emerald-800 underline">
-              Update your information →
-            </Link>
           </div>
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-white border border-gray-200 p-5 rounded-2xl shadow-sm space-y-2">
-            <div className="flex items-center justify-between text-emerald-800">
-              <span className="text-xs font-semibold uppercase text-gray-500">Active Systems</span>
+          <div className="bg-[#141714] border border-white/10 p-5 rounded-2xl space-y-2">
+            <div className="flex items-center justify-between text-[#c7ff45]">
+              <span className="text-xs font-semibold uppercase text-[#6a7268]">Active Systems</span>
               <Sprout className="w-5 h-5" />
             </div>
-            <p className="text-2xl font-bold text-gray-900">1 System</p>
+            <p className="text-2xl font-bold text-white">1 System</p>
           </div>
-
-          <div className="bg-white border border-gray-200 p-5 rounded-2xl shadow-sm space-y-2">
-            <div className="flex items-center justify-between text-emerald-800">
-              <span className="text-xs font-semibold uppercase text-gray-500">Coverage Area</span>
+          <div className="bg-[#141714] border border-white/10 p-5 rounded-2xl space-y-2">
+            <div className="flex items-center justify-between text-[#c7ff45]">
+              <span className="text-xs font-semibold uppercase text-[#6a7268]">Coverage Area</span>
               <BarChart3 className="w-5 h-5" />
             </div>
-            <p className="text-2xl font-bold text-gray-900">1,650 sq ft</p>
+            <p className="text-2xl font-bold text-white">1,650 sq ft</p>
           </div>
-
-          <div className="bg-white border border-gray-200 p-5 rounded-2xl shadow-sm space-y-2">
-            <div className="flex items-center justify-between text-emerald-800">
-              <span className="text-xs font-semibold uppercase text-gray-500">System Health</span>
+          <div className="bg-[#141714] border border-white/10 p-5 rounded-2xl space-y-2">
+            <div className="flex items-center justify-between text-[#c7ff45]">
+              <span className="text-xs font-semibold uppercase text-[#6a7268]">System Health</span>
               <ShieldCheck className="w-5 h-5" />
             </div>
-            <p className="text-2xl font-bold text-emerald-700">Optimal</p>
+            <p className="text-2xl font-bold text-[#c7ff45]">Optimal</p>
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 space-y-4">
-          <h2 className="text-lg font-bold text-gray-900">Your Installations</h2>
-
+        <div id="installations" className="bg-[#141714] border border-white/10 rounded-2xl p-6 space-y-4">
+          <h2 className="text-lg font-bold text-white">Your Installations</h2>
           <div className="space-y-3">
             {projects.map((project) => (
               <div
                 key={project.id}
-                className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 rounded-xl border border-gray-100 bg-[#f9faf8] hover:border-emerald-200 transition gap-4"
+                className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 rounded-xl border border-white/10 bg-[#0a0c0a] hover:border-[#c7ff45]/30 transition gap-4"
               >
                 <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-semibold text-sm text-gray-900">{project.title}</h3>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="font-semibold text-sm text-white">{project.title}</h3>
                     <span
                       className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                         project.status === 'Active'
-                          ? 'bg-emerald-100 text-emerald-800'
-                          : 'bg-amber-100 text-amber-800'
+                          ? 'bg-[#c7ff45]/15 text-[#c7ff45]'
+                          : 'bg-amber-500/15 text-amber-300'
                       }`}
                     >
                       {project.status}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-[#8a9288]">
                     System: {project.system} • Size: {project.area}
                   </p>
                 </div>
-
                 <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
-                  <span className="text-xs font-medium text-gray-600">Health: {project.health}</span>
-                  <button className="text-emerald-800 hover:text-emerald-900 p-1">
+                  <span className="text-xs font-medium text-[#9aa398]">Health: {project.health}</span>
+                  <span className="text-[#c7ff45] p-1">
                     <ArrowUpRight className="w-5 h-5" />
-                  </button>
+                  </span>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </main>
-
-      <Footer />
-    </div>
+      </div>
+    </DashboardShell>
   )
 }

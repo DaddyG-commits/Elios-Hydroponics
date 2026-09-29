@@ -1,10 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import DashboardShell from '@/components/DashboardShell'
 import { getSession, updateUser, type SessionUser } from '@/lib/user-auth'
 
 export default function SettingsPage() {
@@ -40,7 +38,7 @@ export default function SettingsPage() {
   }, [router])
 
   const field =
-    'w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800'
+    'w-full border border-white/15 bg-[#0a0c0a] rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-[#6a7268] focus:outline-none focus:ring-2 focus:ring-[#c7ff45]/40'
 
   const save = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -75,73 +73,64 @@ export default function SettingsPage() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-[#f2f5f0] flex flex-col">
-        <Navbar />
-        <main className="flex-1 max-w-lg mx-auto px-5 py-10 w-full">
-          <p className="text-sm text-gray-500">Loading…</p>
-        </main>
-        <Footer />
-      </div>
+      <DashboardShell title="Account settings">
+        <p className="text-sm text-[#8a9288]">Loading…</p>
+      </DashboardShell>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#f2f5f0] text-gray-900 flex flex-col">
-      <Navbar />
-      <main className="flex-1 max-w-lg mx-auto px-5 pt-28 pb-10 w-full">
-        <div className="mb-6">
-          <Link href="/dashboard" className="eh-back-btn eh-back-btn-light">
-            ← Back to dashboard
-          </Link>
-          <h1 className="text-2xl font-bold mt-4 text-[#1b4332]">Account settings</h1>
-          <p className="text-sm text-gray-600 mt-1">Update your Canadian contact details or password.</p>
-        </div>
+    <DashboardShell title="Account settings">
+      <div className="max-w-lg space-y-4">
+        <p className="text-sm text-[#9aa398]">Update your Canadian contact details or password.</p>
 
-        <form onSubmit={save} className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm">
+        <form onSubmit={save} className="bg-[#141714] border border-white/10 rounded-2xl p-6 space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Full name</label>
+            <label className="block text-xs font-semibold text-[#9aa398] mb-1">Full name</label>
             <input required value={name} onChange={(e) => setName(e.target.value)} className={field} />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Email</label>
+            <label className="block text-xs font-semibold text-[#9aa398] mb-1">Email</label>
             <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className={field} />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Phone (Canada)</label>
+            <label className="block text-xs font-semibold text-[#9aa398] mb-1">Phone (Canada)</label>
             <div className="flex gap-2">
-              <span className="inline-flex items-center border border-gray-300 rounded-xl px-3 text-sm bg-gray-50">🇨🇦 +1</span>
+              <span className="inline-flex items-center border border-white/15 rounded-xl px-3 text-sm bg-[#0a0c0a] text-[#9aa398]">
+                🇨🇦 +1
+              </span>
               <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} className={field} />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Street address</label>
+            <label className="block text-xs font-semibold text-[#9aa398] mb-1">Street address</label>
             <input required value={address} onChange={(e) => setAddress(e.target.value)} className={field} />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">City</label>
+              <label className="block text-xs font-semibold text-[#9aa398] mb-1">City</label>
               <input required value={city} onChange={(e) => setCity(e.target.value)} className={field} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Province</label>
+              <label className="block text-xs font-semibold text-[#9aa398] mb-1">Province</label>
               <input required value={region} onChange={(e) => setRegion(e.target.value)} className={field} />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Postal code</label>
+            <label className="block text-xs font-semibold text-[#9aa398] mb-1">Postal code</label>
             <input required value={postalCode} onChange={(e) => setPostalCode(e.target.value)} className={field} />
           </div>
 
-          <hr className="border-gray-100" />
+          <hr className="border-white/10" />
 
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Change password (optional)</p>
+          <p className="text-xs font-semibold text-[#6a7268] uppercase tracking-wide">Change password (optional)</p>
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">New password</label>
+            <label className="block text-xs font-semibold text-[#9aa398] mb-1">New password</label>
             <input
               type="password"
               minLength={6}
@@ -153,7 +142,7 @@ export default function SettingsPage() {
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Confirm new password</label>
+            <label className="block text-xs font-semibold text-[#9aa398] mb-1">Confirm new password</label>
             <input
               type="password"
               minLength={6}
@@ -165,22 +154,21 @@ export default function SettingsPage() {
           </div>
 
           {error && (
-            <p className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-xl px-3 py-2">{error}</p>
+            <p className="text-sm text-red-300 bg-red-500/10 border border-red-500/20 rounded-xl px-3 py-2">{error}</p>
           )}
           {message && (
-            <p className="text-sm text-emerald-800 bg-emerald-50 border border-emerald-100 rounded-xl px-3 py-2">{message}</p>
+            <p className="text-sm text-[#c7ff45] bg-[#c7ff45]/10 border border-[#c7ff45]/20 rounded-xl px-3 py-2">{message}</p>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#1b4332] text-white py-3 rounded-xl font-semibold hover:bg-emerald-900 disabled:opacity-60"
+            className="w-full bg-[#c7ff45] text-[#11150b] py-3 rounded-xl font-bold hover:brightness-105 disabled:opacity-60"
           >
             {loading ? 'Saving…' : 'Save changes'}
           </button>
         </form>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </DashboardShell>
   )
 }
