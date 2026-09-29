@@ -55,11 +55,8 @@ export default function RegisterPage() {
       <Navbar />
 
       <main className="flex-1 max-w-lg mx-auto px-5 pt-28 pb-12 w-full">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-900 hover:text-emerald-700 mb-5"
-        >
-          <span aria-hidden>←</span> Back to home
+        <Link href="/" className="eh-back-btn eh-back-btn-light mb-5">
+          ← Back to home
         </Link>
 
         <div className="bg-white border border-gray-200 p-7 rounded-2xl space-y-5 shadow-sm">

@@ -29,11 +29,8 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen bg-[#f2f5f0] text-gray-900 flex flex-col">
       <Navbar />
       <main className="flex-1 max-w-md mx-auto w-full px-5 pt-28 pb-12">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-900 hover:text-emerald-700 mb-5"
-        >
-          <span aria-hidden>←</span> Back to home
+        <Link href="/" className="eh-back-btn eh-back-btn-light mb-5">
+          ← Back to home
         </Link>
 
         <div className="bg-white border border-gray-200 rounded-2xl p-7 space-y-5 shadow-sm">
