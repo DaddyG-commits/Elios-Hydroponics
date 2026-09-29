@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { MessageSquare, ArrowRight, Bot, ArrowLeft } from 'lucide-react'
+import { MessageSquare, ArrowRight, Bot } from 'lucide-react'
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Array<{ sender: string; text: string }>>([
@@ -38,13 +38,8 @@ export default function ChatPage() {
       <Navbar />
 
       <main className="flex-1 max-w-3xl mx-auto px-5 pt-24 pb-8 space-y-6 w-full">
-        {/* Clear way back home */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-900 hover:text-emerald-700"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to home
+        <Link href="/" className="eh-back-btn eh-back-btn-light">
+          ← Back to home
         </Link>
 
         <div className="space-y-2">

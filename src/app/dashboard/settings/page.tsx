@@ -88,12 +88,12 @@ export default function SettingsPage() {
   return (
     <div className="min-h-screen bg-[#f2f5f0] text-gray-900 flex flex-col">
       <Navbar />
-      <main className="flex-1 max-w-lg mx-auto px-5 py-10 w-full">
-        <div className="mb-5">
-          <Link href="/dashboard" className="text-sm text-emerald-800 font-medium hover:underline">
+      <main className="flex-1 max-w-lg mx-auto px-5 pt-28 pb-10 w-full">
+        <div className="mb-6">
+          <Link href="/dashboard" className="eh-back-btn eh-back-btn-light">
             ← Back to dashboard
           </Link>
-          <h1 className="text-2xl font-bold mt-2 text-[#1b4332]">Account settings</h1>
+          <h1 className="text-2xl font-bold mt-4 text-[#1b4332]">Account settings</h1>
           <p className="text-sm text-gray-600 mt-1">Update your Canadian contact details or password.</p>
         </div>
 
